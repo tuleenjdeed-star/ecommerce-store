@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.product-details{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+padding:40px;
+flex-wrap:wrap;
+}
+
+.product-details img{
+width:300px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.product-info{
+max-width:400px;
+text-align:left;
+}
+
+.product-info h2{
+margin-bottom:10px;
+}
+
+.product-info p{
+font-size:18px;
+margin-bottom:15px;
+}
+
+.product-info button{
+background:#f5e6d3;
+border:none;
+padding:10px 20px;
+cursor:pointer;
+border-radius:6px;
+font-size:16px;
+color:black;
+}
+
+.product-info button:hover{
+background:#ff99cc;
+}
+
+</style>
+
+</head>
+<body>
+
+<nav>
+<h2>My Mini Store</h2>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="cart.html">Cart</a></li>
+</ul>
+</nav>
+
+<main>
+
+<div class="product-details">
+
+<img id="product-image">
+
+<div class="product-info">
+
+<h2 id="product-name"></h2>
+
+<p id="product-price"></p>
+
+<p id="product-description">
+This is a high quality product available in our store.
+It is designed with modern style and excellent materials.
+</p>
+
+<button id="add-cart">Add to Cart</button>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+const products = [
+
+{name:"Product 1",price:50,image:"images/product1.jpg"},
+{name:"Product 2",price:55,image:"images/product2.jpg"},
+{name:"Product 3",price:60,image:"images/product3.jpg"},
+{name:"Product 4",price:45,image:"images/product4.jpg"},
+{name:"Product 5",price:70,image:"images/product5.jpg"},
+{name:"Product 6",price:65,image:"images/product6.jpg"},
+{name:"Product 7",price:75,image:"images/product7.jpg"},
+{name:"Product 8",price:60,image:"images/product8.jpg"},
+{name:"Product 9",price:80,image:"images/product9.jpg"},
+{name:"Product 10",price:50,image:"images/product10.jpg"},
+{name:"Product 11",price:65,image:"images/product11.jpg"},
+{name:"Product 12",price:80,image:"images/product12.jpg"}
+
+];
+
+const params = new URLSearchParams(window.location.search);
+
+const productId = params.get("product") - 1;
+
+const product = products[productId];
+
+document.getElementById("product-name").innerText = product.name;
+
+document.getElementById("product-price").innerText = "$" + product.price;
+
+document.getElementById("product-image").src = product.image;
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.getElementById("add-cart").onclick = function(){
+
+cart.push(product);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("Product added to cart");
+
+}
+
+</script>
+
+</body>
+</html>

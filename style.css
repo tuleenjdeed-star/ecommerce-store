@@ -1,0 +1,223 @@
+/* ----------------------------
+   Global Styles
+----------------------------- */
+
+body{
+font-family:Arial,sans-serif;
+background:#ffffff;
+margin:0;
+padding:0;
+text-align:center;
+color:#333;
+}
+
+h1,h2,h3{
+margin-bottom:10px;
+}
+
+/* ----------------------------
+   Navbar
+----------------------------- */
+
+nav{
+background:#ffd6e8;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:2px solid #ffc0d8;
+}
+
+nav h2{
+color:black;
+margin:0;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:20px;
+margin:0;
+padding:0;
+}
+
+nav ul li a{
+text-decoration:none;
+color:black;
+font-weight:bold;
+}
+
+nav ul li a:hover{
+color:#ff80b3;
+}
+
+/* ----------------------------
+   Filters
+----------------------------- */
+
+.filters{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.filters input,
+.filters select{
+padding:8px 12px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+/* ----------------------------
+   Product Grid
+----------------------------- */
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px;
+}
+
+.product-card{
+background:white;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.12);
+padding:15px;
+transition:transform 0.3s,box-shadow 0.3s;
+}
+
+.product-card:hover{
+transform:translateY(-6px);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* صورة المنتج */
+
+.product-card img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:5px;
+margin-bottom:10px;
+transition:transform 0.3s;
+}
+
+.product-card:hover img{
+transform:scale(1.08);
+}
+
+/* اسم المنتج */
+
+.product-card h3{
+font-size:18px;
+}
+
+/* السعر */
+
+.product-card p{
+color:black;
+font-weight:bold;
+}
+
+/* زر Add */
+
+.product-card button{
+background:#f5e6d3;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+color:black;
+transition:0.3s;
+}
+
+.product-card button:hover{
+background:#ff99cc;
+}
+
+/* ----------------------------
+   Cart Page
+----------------------------- */
+
+#cart-list{
+list-style:none;
+padding:0;
+}
+
+#cart-list li{
+background:white;
+margin:10px auto;
+padding:10px;
+max-width:500px;
+display:flex;
+justify-content:space-between;
+border-radius:6px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+#cart-list button{
+background:#ff99cc;
+border:none;
+padding:5px 10px;
+border-radius:4px;
+cursor:pointer;
+color:black;
+}
+
+#clear-cart{
+background:#f5e6d3;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+color:black;
+margin-top:10px;
+}
+
+#clear-cart:hover{
+background:#ff99cc;
+}
+
+/* ----------------------------
+   Page Animation
+----------------------------- */
+
+main{
+animation:fade 0.6s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ----------------------------
+   Responsive
+----------------------------- */
+
+@media(max-width:1000px){
+.product-grid{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+@media(max-width:700px){
+.product-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:500px){
+.product-grid{
+grid-template-columns:1fr;
+}
+}

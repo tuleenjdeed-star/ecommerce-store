@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Products - My Mini Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>My Mini Store</h2>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+    </ul>
+</nav>
+
+<main>
+<h1>Our Products</h1>
+
+<!-- شريط البحث والفلاتر -->
+<div class="filters">
+    <input type="text" id="search-box" placeholder="Search products...">
+    <select id="filter-price">
+        <option value="all">All Prices</option>
+        <option value="0-50">0 - 50$</option>
+        <option value="51-70">51 - 70$</option>
+        <option value="71-100">71 - 100$</option>
+    </select>
+</div>
+
+<div class="product-grid">
+
+<!-- المنتجات 1 إلى 12 -->
+<div class="product-card">
+    <a href="product-details.html?product=1"><img src="images/product1.jpg"></a>
+    <h3>Product 1</h3>
+    <p>$50</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=2"><img src="images/product2.jpg"></a>
+    <h3>Product 2</h3>
+    <p>$55</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=3"><img src="images/product3.jpg"></a>
+    <h3>Product 3</h3>
+    <p>$60</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=4"><img src="images/product4.jpg"></a>
+    <h3>Product 4</h3>
+    <p>$45</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=5"><img src="images/product5.jpg"></a>
+    <h3>Product 5</h3>
+    <p>$70</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=6"><img src="images/product6.jpg"></a>
+    <h3>Product 6</h3>
+    <p>$65</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=7"><img src="images/product7.jpg"></a>
+    <h3>Product 7</h3>
+    <p>$75</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=8"><img src="images/product8.jpg"></a>
+    <h3>Product 8</h3>
+    <p>$60</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=9"><img src="images/product9.jpg"></a>
+    <h3>Product 9</h3>
+    <p>$80</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=10"><img src="images/product10.jpg"></a>
+    <h3>Product 10</h3>
+    <p>$50</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=11"><img src="images/product11.jpg"></a>
+    <h3>Product 11</h3>
+    <p>$65</p>
+    <button>Add to Cart</button>
+</div>
+<div class="product-card">
+    <a href="product-details.html?product=12"><img src="images/product12.jpg"></a>
+    <h3>Product 12</h3>
+    <p>$80</p>
+    <button>Add to Cart</button>
+</div>
+
+</div>
+</main>
+
+<script>
+// Add to Cart functionality
+let buttons = document.querySelectorAll(".product-card button");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+buttons.forEach(button => {
+    button.addEventListener("click", ()=>{
+        const product = button.parentElement;
+        const name = product.querySelector("h3").innerText;
+        const price = product.querySelector("p").innerText;
+        cart.push({name:name, price:price});
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(name + " added to cart!");
+    });
+});
+
+// Filter & Search
+const productCards = document.querySelectorAll(".product-card");
+const searchBox = document.getElementById("search-box");
+const filterPrice = document.getElementById("filter-price");
+
+function filterProducts() {
+    const searchText = searchBox.value.toLowerCase();
+    const priceRange = filterPrice.value;productCards.forEach(card => {
+        const name = card.querySelector("h3").innerText.toLowerCase();
+        const price = parseFloat(card.querySelector("p").innerText.replace("$",""));
+        let match = true;
+
+        if(!name.includes(searchText)) match = false;
+
+        if(priceRange !== "all"){
+            const [min,max] = priceRange.split("-").map(Number);
+            if(price < min || price > max) match = false;
+        }
+
+        card.style.display = match ? "block" : "none";
+    });
+}
+
+searchBox.addEventListener("input", filterProducts);
+filterPrice.addEventListener("change", filterProducts);
+</script>
+
+</body>
+</html>
